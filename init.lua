@@ -672,6 +672,23 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'chomosuke/typst-preview.nvim',
+    lazy = false, -- or ft = 'typst'
+    version = '1.*',
+    config = function()
+      require('typst-preview').setup {
+        -- Setting this to 'always' will invert black and white in the preview
+        -- Setting this to 'auto' will invert depending if the browser has enable
+        -- dark mode
+        -- Setting this to '{"rest": "<option>","image": "<option>"}' will apply
+        -- your choice of color inversion to images and everything else
+        -- separately.
+        invert_colors = '{"rest": "auto","image": "never"}',
+      }
+    end,
+  },
+
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
