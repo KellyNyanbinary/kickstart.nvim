@@ -245,6 +245,7 @@ require('lazy').setup({
     },
   },
 
+  -- Add the GitHub theme
   {
     'projekt0n/github-nvim-theme',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
