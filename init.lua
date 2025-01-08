@@ -260,6 +260,14 @@ require('lazy').setup({
     end,
   },
 
+  -- Add Discord presence
+  {
+    'andweeb/presence.nvim',
+    opts = {
+      neovim_image_text = 'Going to line 3 :3',
+    },
+  },
+
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- Was disabled in favor of an explicit tab size of 4.
