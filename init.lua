@@ -210,6 +210,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Use Rust syntax highlighting on JPL code file
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = '*.jpl',
+  command = 'set filetype=rust',
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
