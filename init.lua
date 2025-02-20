@@ -652,6 +652,39 @@ require('lazy').setup({
             },
           },
         },
+
+        -- Partially taken from https://github.com/chrisgrieser/.config/blob/306e8ba9774c8277ecc4ed655040e0091ccda50b/nvim/lua/plugins/lsp-servers.lua#L240 for the settings part. Not sure if it even does anything.
+        ts_ls = {
+          settings = {
+            -- Enable checking js without a 'jsconfig.json' (implicit project configuration)
+            implicitProjectConfiguration = { -- DOCS https://www.typescriptlang.org/tsconfig
+              checkJs = true,
+              target = 'ES2022',
+            },
+          },
+          on_attach = function(client)
+            -- From ChatGPT.
+            -- Get the current settings from the client's configuration.
+            local ts_ls_settings = client.config.settings or {}
+
+            -- Ensure the javascript format table exists and assign our preference.
+            ts_ls_settings.javascript = ts_ls_settings.javascript or {}
+            ts_ls_settings.javascript.format = ts_ls_settings.javascript.format or {}
+            ts_ls_settings.javascript.format.convertTabsToSpaces = true
+            ts_ls_settings.javascript.format.indentSize = 4
+            ts_ls_settings.javascript.format.tabSize = 4
+
+            -- Ensure the typescript format table exists and assign our preference.
+            ts_ls_settings.typescript = ts_ls_settings.typescript or {}
+            ts_ls_settings.typescript.format = ts_ls_settings.typescript.format or {}
+            ts_ls_settings.typescript.format.convertTabsToSpaces = true
+            ts_ls_settings.typescript.format.indentSize = 4
+            ts_ls_settings.typescript.format.tabSize = 4
+
+            -- Notify the language server that our configuration has changed.
+            vim.lsp.buf_notify(client.bufnr, 'workspace/didChangeConfiguration', { settings = ts_ls_settings })
+          end,
+        },
       }
 
       -- Ensure the servers and tools above are installed
