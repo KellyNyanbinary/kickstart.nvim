@@ -658,7 +658,7 @@ require('lazy').setup({
           settings = {
             -- Enable checking js without a 'jsconfig.json' (implicit project configuration)
             implicitProjectConfiguration = { -- DOCS https://www.typescriptlang.org/tsconfig
-              checkJs = true,
+              checkJs = false,
               target = 'ES2022',
             },
           },
